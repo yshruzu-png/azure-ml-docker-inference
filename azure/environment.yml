@@ -1,0 +1,20 @@
+$schema: https://azuremlschemas.azureedge.net/latest/environment.schema.json
+
+name: iris-docker-environment
+
+description: Docker environment for Iris ML inference service
+
+image: yusufmlacr29921.azurecr.io/iris-ml-service:1.0
+
+inference_config:
+  liveness_route:
+    port: 8000
+    path: /
+
+  readiness_route:
+    port: 8000
+    path: /
+
+  scoring_route:
+    port: 8000
+    path: /predict

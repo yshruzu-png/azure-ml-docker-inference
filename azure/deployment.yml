@@ -1,0 +1,31 @@
+$schema: https://azuremlschemas.azureedge.net/latest/managedOnlineDeployment.schema.json
+
+name: blue
+
+endpoint_name: iris-docker-endpoint
+
+environment: azureml:iris-docker-environment:1
+
+instance_type: Standard_DS2_v2
+# Standard_DS3_v2 size might give you quota issues error, so you can use Standard_DS2_v2 for this demo.
+
+instance_count: 1
+
+app_insights_enabled: true
+
+liveness_probe:
+  initial_delay: 10
+  period: 10
+  timeout: 2
+  failure_threshold: 30
+  success_threshold: 1
+
+readiness_probe:
+  initial_delay: 10
+  period: 10
+  timeout: 2
+  failure_threshold: 30
+  success_threshold: 1
+
+request_settings:
+  request_timeout_ms: 60000
